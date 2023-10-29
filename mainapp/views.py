@@ -1,10 +1,16 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseNotFound, Http404
+from django.shortcuts import render, redirect
+
+from .models import Category, Recipe
+
+menu = ["О сайте", "Добавить рецепт", "Обратная связь", "Войти"]
 
 
 # Create your views here.
 def index(request):
-    return HttpResponse("Hello, djrecipes!")
+    posts = Recipe.objects.all()
+    return render(request, 'mainapp/index.html',
+                  {'posts': posts, 'menu': menu, 'title': 'Главная страница'})
 
 
 def about(request):

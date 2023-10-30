@@ -2,14 +2,15 @@
 
 {% block content %}
 <ul class="list-articles">
-	{% for p in posts %}
-			<li><h2>{{p.title}}</h2>
+	{% for r in recipes %}
+			<li><h2>{{r.title}}</h2>
 	{% autoescape on %}
-	{{p.content|linebreaks|truncatewords:50}}
-{#  {{p.content|linebreaks}}#}
+	{{r.content|linebreaks|truncatewords:50}}
+{#  {{r.content|linebreaks}}#}
 	{% endautoescape %}
 			<div class="clear"></div>
-			<p class="link-read-post"><a href="#">Читать пост</a></p>
+{#			<p class="link-read-post"><a href="{% url 'recipe' r.pk %}">Читать рецепт</a></p>#}
+      <p class="link-read-post"><a href="{{ r.get_absolute_url }}">Читать рецепт</a></p>
 			</li>
 	{% endfor %}
 </ul>

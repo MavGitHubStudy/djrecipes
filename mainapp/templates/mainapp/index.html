@@ -3,14 +3,22 @@
 {% block content %}
 <ul class="list-articles">
 	{% for r in recipes %}
-			<li><h2>{{r.title}}</h2>
+			<li>
+				<div class="article-panel">
+					<p class="first">Категория: {{ r.cat }}</p>
+					<p class="last">Дата: {{ r.time_update|date:"d-m-Y H:i:s" }}</p>
+				</div>
+
+				<h2>{{r.title}}</h2>
 	{% autoescape on %}
 	{{r.content|linebreaks|truncatewords:50}}
 {#  {{r.content|linebreaks}}#}
 	{% endautoescape %}
 			<div class="clear"></div>
 {#			<p class="link-read-post"><a href="{% url 'recipe' r.pk %}">Читать рецепт</a></p>#}
-      <p class="link-read-post"><a href="{{ r.get_absolute_url }}">Читать рецепт</a></p>
+      <p class="link-read-post">
+				<a href="{{ r.get_absolute_url }}">Читать рецепт</a>
+			</p>
 			</li>
 	{% endfor %}
 </ul>

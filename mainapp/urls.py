@@ -25,4 +25,5 @@ urlpatterns = [
     path('contact/', m.contact, name='contact'),
     path('login/', m.login, name='login'),
     path('recipe/<int:recipe_id>/', m.show_recipe, name='recipe'),
+    path('category/<int:cat_id>/', m.show_category, name='category'),
 ]

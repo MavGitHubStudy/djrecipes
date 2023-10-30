@@ -14,10 +14,8 @@ menu = [
 # Create your views here.
 def index(request):
     recipes = Recipe.objects.all()
-    categories = Category.objects.all()
 
     context = {
-        'categories': categories,
         'recipes': recipes,
         'menu': menu,
         'title': 'Главная страница',
@@ -53,13 +51,11 @@ def show_recipe(request, recipe_id):
 
 def show_category(request, cat_id):
     recipes = Recipe.objects.filter(cat_id=cat_id)
-    categories = Category.objects.all()
 
     if len(recipes) == 0:
         raise Http404()
 
     context = {
-        'categories': categories,
         'recipes': recipes,
         'menu': menu,
         'title': 'Отображение по категориям',

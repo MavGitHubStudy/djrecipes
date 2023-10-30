@@ -18,6 +18,9 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('category', kwargs={'cat_id': self.pk})
+
 
 class Recipe(models.Model):
     title = models.CharField(max_length=255, db_index=True,

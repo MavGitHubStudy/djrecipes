@@ -19,7 +19,7 @@ class Category(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('category', kwargs={'cat_id': self.pk})
+        return reverse('category', kwargs={'cat_slug': self.slug})
 
 
 class Recipe(models.Model):
@@ -52,4 +52,4 @@ class Recipe(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('recipe', kwargs={'recipe_id': self.pk})
+        return reverse('recipe', kwargs={'recipe_slug': self.slug})

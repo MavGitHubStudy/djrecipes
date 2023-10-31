@@ -34,7 +34,11 @@ def about(request):
 
 
 def add_page(request):
-    return HttpResponse("Добавление рецепта")
+    context = {
+       'menu': menu,
+       'title': 'Добавление рецепта'
+    }
+    return render(request, 'mainapp/add_page.html', context=context)
 
 
 def contact(request):
@@ -68,7 +72,7 @@ def show_category(request, cat_slug):
         'recipes': recipes,
         'menu': menu,
         'title': 'Отображение по категориям',
-        'cat_selected': cat_slug,
+        'cat_selected': recipes[0].id,
     }
 
     return render(request, 'mainapp/index.html', context=context)

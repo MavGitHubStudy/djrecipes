@@ -1,5 +1,5 @@
 from django.http import HttpResponse, HttpResponseNotFound, Http404
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from .models import Category, Recipe
 
@@ -46,7 +46,16 @@ def login(request):
 
 
 def show_recipe(request, recipe_id):
-    return HttpResponse(f"Отображение рецепта с id = {recipe_id}")
+    recipe = get_object_or_404(Recipe, pk=recipe_id)
+
+    context = {
+        'recipe': recipe,
+        'menu': menu,
+        'title': recipe.title,
+        'cat_selected': recipe.cat_id,
+    }
+
+    return render(request, 'mainapp/recipe.html', context=context)
 
 
 def show_category(request, cat_id):

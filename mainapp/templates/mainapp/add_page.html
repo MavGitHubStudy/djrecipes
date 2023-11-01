@@ -2,5 +2,38 @@
 
 {%  block content %}
   <h1>{{ title }}</h1>
-  <p>Содарежание страницы</p>
+
+  <form action="{% url 'add_page' %}" method="post">
+    {%  csrf_token %}
+{#    {{ form.as_p }}#}
+    <p><label class="form-label" for="{{ form.title.id_for_label }}">
+      {{ form.title.label }}:
+    </label>
+      {{ form.title }}
+    </p>
+    <div class="form-error">{{  form.title.errors }}</div>
+
+    <p><label class="form-label" for="{{ form.slug.id_for_label }}">
+      {{ form.slug.label }}:
+    </label>
+      {{ form.slug }}
+    </p>
+    <div class="form-error">{{  form.slug.errors }}</div>
+
+    <p><label class="form-label" for="{{ form.content.id_for_label }}">
+      {{ form.content.label }}:
+    </label>
+      {{ form.content }}
+    </p>
+    <div class="form-error">{{  form.content.errors }}</div>
+
+    <p><label class="form-label" for="{{ form.cooking_steps.id_for_label }}">
+      {{ form.cooking_steps.label }}:
+    </label>
+      {{ form.cooking_steps }}
+    </p>
+    <div class="form-error">{{  form.cooking_steps.errors }}</div>
+
+    <button type="submit">Добавить</button>
+  </form>
 {% endblock %}

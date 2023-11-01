@@ -29,7 +29,7 @@ class Recipe(models.Model):
                             verbose_name="URL")
     content = models.TextField(blank=True, verbose_name="Описание")
     cooking_steps = models.TextField(blank=True,
-                                     verbose_name="Шаги приготовления")
+                                     verbose_name="Шаги пригот.")
     cooking_time = models.IntegerField(
         null=True, blank=True, verbose_name="Время приготовления в минутах")
     image = models.ImageField(upload_to="images/%Y/%m/%d/",

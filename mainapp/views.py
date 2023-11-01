@@ -36,14 +36,10 @@ def about(request):
 
 def add_page(request):
     if request.method == 'POST':
-        form = AddRecipeForm(request.POST)
+        form = AddRecipeForm(request.POST, request.FILES)
         if form.is_valid():
-            #print(form.cleaned_data)
-            try:
-                Recipe.objects.create(**form.cleaned_data)
-                return redirect('home')
-            except:
-                form.add_error(None, 'Ошибка добавления рецепта')
+            form.save()
+            return redirect('home')
     else:
         form = AddRecipeForm()
 

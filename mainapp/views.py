@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpResponseNotFound, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 
 from .models import Category, Recipe
+from .forms import AddRecipeForm
 
 menu = [
     {'title': "О сайте", 'url_name': 'about'},
@@ -34,7 +35,21 @@ def about(request):
 
 
 def add_page(request):
-    return HttpResponse("Добавление рецепта")
+    if request.method == 'POST':
+        form = AddRecipeForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = AddRecipeForm()
+
+    context = {
+        'form': form,
+        'menu': menu,
+        'title': 'Добавление рецепта'
+    }
+
+    return render(request, 'mainapp/add_page.html', context=context)
 
 
 def contact(request):
@@ -68,7 +83,7 @@ def show_category(request, cat_slug):
         'recipes': recipes,
         'menu': menu,
         'title': 'Отображение по категориям',
-        'cat_selected': cat_slug,
+        'cat_selected': recipes[0].id,
     }
 
     return render(request, 'mainapp/index.html', context=context)

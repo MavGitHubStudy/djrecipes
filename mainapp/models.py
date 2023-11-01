@@ -30,9 +30,10 @@ class Recipe(models.Model):
     content = models.TextField(blank=True, verbose_name="Описание")
     cooking_steps = models.TextField(blank=True,
                                      verbose_name="Шаги приготовления")
-    cooking_time = models.IntegerField(null=True, blank=True,
-                                       verbose_name="Время приготовления в минутах")
+    cooking_time = models.IntegerField(
+        null=True, blank=True, verbose_name="Время приготовления в минутах")
     image = models.ImageField(upload_to="images/%Y/%m/%d/",
+                              default="images/None/no-img.jpg",
                               verbose_name="Изображение")
     author = models.CharField(max_length=255, verbose_name="Автор")
     time_create = models.DateTimeField(auto_now_add=True,

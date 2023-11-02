@@ -1,29 +1,33 @@
 {% extends 'mainapp/base.html' %}
+<!--{% load static %}-->
 
 {% block content %}
 <ul class="list-articles">
 	{% for r in recipes %}
-			<li>
-				<div class="article-panel">
-					<p class="first">Категория: {{ r.cat }}</p>
-					<p class="last">Дата: {{ r.time_update|date:"d-m-Y H:i:s" }}</p>
-				</div>
+<!--  <div>-->
+<!--    <img class="logo" src="{% static 'mainapp/images/recipe.png' %}" />-->
+<!--  </div>-->
+    <li>
+      <div class="article-panel">
+        <p class="first">Категория: {{ r.cat }}</p>
+        <p class="last">Дата: {{ r.time_update|date:"d-m-Y H:i:s" }}</p>
+      </div>
 
-        {% if r.image %}
-          <p><img class="img-article-left thumb" src="{{r.image.url}}"></p>
-        {% endif %}
+      {% if r.image %}
+        <p><img class="img-article-left thumb" src="{{r.image.url}}"></p>
+      {% endif %}
 
-				<h2>{{r.title}}</h2>
-        {% autoescape on %}
-        {{r.content|linebreaks|truncatewords:50}}
-      {#  {{r.content|linebreaks}}#}
-        {% endautoescape %}
-        <div class="clear"></div>
-      {#	<p class="link-read-post"><a href="{% url 'recipe' r.pk %}">Читать рецепт</a></p>#}
-          <p class="link-read-post">
-            <a href="{{ r.get_absolute_url }}">Читать рецепт</a>
-          </p>
-			</li>
+      <h2>{{r.title}}</h2>
+      {% autoescape on %}
+      {{r.content|linebreaks|truncatewords:50}}
+    {#  {{r.content|linebreaks}}#}
+      {% endautoescape %}
+      <div class="clear"></div>
+    {#	<p class="link-read-post"><a href="{% url 'recipe' r.pk %}">Читать рецепт</a></p>#}
+        <p class="link-read-post">
+          <a href="{{ r.get_absolute_url }}">Читать рецепт</a>
+        </p>
+    </li>
 	{% endfor %}
 </ul>
 {% endblock %}

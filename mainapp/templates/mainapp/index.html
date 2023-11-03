@@ -1,12 +1,8 @@
 {% extends 'mainapp/base.html' %}
-<!--{% load static %}-->
 
 {% block content %}
 <ul class="list-articles">
 	{% for r in recipes %}
-<!--  <div>-->
-<!--    <img class="logo" src="{% static 'mainapp/images/recipe.png' %}" />-->
-<!--  </div>-->
     <li>
       <div class="article-panel">
         <p class="first">Категория: {{ r.cat }}</p>

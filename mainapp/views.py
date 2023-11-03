@@ -33,15 +33,18 @@ class RecipeHome(DataMixin, ListView):
 
 
 def about(request):
-    contact_list = Recipe.objects.all()
-    paginator = Paginator(contact_list, 3)
-
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-
+    # contact_list = Recipe.objects.all()
+    # paginator = Paginator(contact_list, 3)
+    #
+    # page_number = request.GET.get('page')
+    # page_obj = paginator.get_page(page_number)
+    #
+    # context = {
+    #     'page_obj': page_obj,
+    #     'menu': menu,
+    #     'title': 'О сайте'
+    # }
     context = {
-        'page_obj': page_obj,
-        'menu': menu,
         'title': 'О сайте'
     }
 

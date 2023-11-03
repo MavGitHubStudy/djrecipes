@@ -24,6 +24,7 @@ urlpatterns = [
     path('addpage/', m.AddPage.as_view(), name='add_page'),
     path('contact/', m.contact, name='contact'),
     path('login/', m.login, name='login'),
+    path('register/', m.RegisterUser.as_view(), name='register'),
     path('recipe/<slug:recipe_slug>/', m.ShowRecipe.as_view(), name='recipe'),
     path('category/<slug:cat_slug>/', m.RecipeCategory.as_view(), name='category'),
 ]
